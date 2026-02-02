@@ -1,66 +1,92 @@
 import Link from "next/link";
 
+const quickLinks = [
+  { href: "/about", label: "About Us" },
+  { href: "/new", label: "I'm New" },
+  { href: "/ministries", label: "Ministries" },
+  { href: "/media", label: "Media" },
+  { href: "/giving", label: "Give" },
+];
+
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background with gradient overlay */}
-      <div className="absolute inset-0 gradient-hero" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30" />
+    <section className="relative min-h-screen bg-[#0a0a12]">
+      {/* Background image placeholder - dark worship scene */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(10, 10, 18, 0.4), rgba(10, 10, 18, 0.7)),
+            url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1920&q=80')`,
+        }}
+      />
 
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -right-1/4 w-[800px] h-[800px] rounded-full bg-[#4a5bc7]/20 blur-3xl" />
-        <div className="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-[#e07940]/10 blur-3xl" />
-      </div>
+      {/* Content container */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-32 pb-20 lg:px-8">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:gap-16">
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-32 text-center lg:px-8">
-        <div className="mx-auto max-w-4xl">
-          {/* Tagline */}
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-white/70 mb-6">
-            Impacting Virginia for Christ
-          </p>
+          {/* Main content - left side */}
+          <div className="flex-1 lg:pt-16">
+            {/* Label */}
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-sm text-white/60">Welcome to Life Ministries</span>
+              <span className="h-px flex-1 max-w-100px bg-white/20" />
+            </div>
 
-          {/* Main headline */}
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-8xl text-balance">
-            Reconciling the World to Christ
-          </h1>
+            {/* Main headline */}
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6">
+              Reconciling the World to Christ
+            </h1>
 
-          {/* Subtitle */}
-          <p className="mt-6 text-lg leading-8 text-white/80 sm:text-xl max-w-2xl mx-auto">
-            A ministry of the Church of God of Prophecy
-          </p>
+            {/* Subtitle */}
+            <p className="text-lg text-white/70 mb-8 max-w-xl">
+              A ministry of the Church of God of Prophecy in Lynchburg, Virginia.
+              Join us as we worship, grow, and serve together.
+            </p>
 
-          {/* CTAs */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            {/* CTA */}
             <Link
               href="/new"
-              className="inline-flex items-center justify-center rounded-full bg-[#e07940] px-8 py-4 text-base font-semibold text-white shadow-lg hover:bg-[#c5612a] transition-all hover:scale-105 hover:shadow-xl"
+              className="inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1a1a1a] hover:bg-white/90 transition-colors"
             >
-              I&apos;m New Here
-              <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center justify-center rounded-full border-2 border-white/30 px-8 py-4 text-base font-semibold text-white hover:bg-white/10 transition-all"
-            >
-              Learn More
+              Plan Your Visit
             </Link>
           </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg className="h-8 w-8 text-white/50" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
+          {/* Quick links sidebar - right side */}
+          <div className="mt-12 lg:mt-0 lg:w-72">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+              <h2 className="text-xl font-semibold text-white mb-6">
+                Get Involved
+              </h2>
+              <nav className="space-y-1">
+                {quickLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="flex items-center justify-between py-3 px-1 text-white/80 hover:text-white border-b border-white/10 last:border-0 transition-colors group"
+                  >
+                    <span>{link.label}</span>
+                    <svg
+                      className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="2"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Rounded bottom corners overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-white rounded-t-[2rem]" />
+      <div className="absolute -bottom-px left-0 right-0">
+        <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none" className="w-full h-60px block">
+          <path d="M0 60V30C240 10 480 0 720 0C960 0 1200 10 1440 30V60H0Z" fill="white" />
+        </svg>
+      </div>
     </section>
   );
 }
