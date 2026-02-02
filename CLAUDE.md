@@ -65,3 +65,178 @@ This is a newly bootstrapped project. No custom components, utilities, or shared
 - `eslint.config.mjs` - ESLint with Next.js Core Web Vitals rules
 - `postcss.config.mjs` - PostCSS configuration for Tailwind
 - `tsconfig.json` - TypeScript compiler options and path aliases
+
+### Component Organization
+
+- **Shared components** (used across multiple pages): Place in `src/components/`
+  - `src/components/layout/` - Header, footer, navigation
+  - `src/components/ui/` - Buttons, cards, inputs, etc.
+- **Page-specific components** (used in one spot): Co-locate in `src/app/<route>/_components/`
+  - Example: `src/app/_components/hero.tsx` for home page hero section
+
+## Development Workflow: Test-Driven Development (TDD)
+
+**IMPORTANT: This project follows TDD. Tests are the default, not the exception. When in doubt, write the test.**
+
+### TDD Workflow
+
+1. **Write tests first** - Create test file describing expected behavior
+2. **Verify tests fail** - Confirm red phase
+3. **Implement the code** - Write minimum code to pass
+4. **Refactor** - Clean up while keeping tests green
+
+### What Requires Tests
+
+**Always test:**
+- Utility functions and helpers
+- Custom React hooks
+- Bug fixes (write a failing test that reproduces the bug first)
+- API routes with any logic
+- Components with user interactions or conditional rendering
+- Data transformations and formatting
+- Form validation logic
+
+**Component tests should cover:**
+- User interactions (clicks, form submissions, keyboard navigation)
+- Accessibility (screen reader support, focus management)
+- Error states and loading states
+- Conditional rendering logic
+
+**Skip tests only for:**
+- Pure configuration changes (env vars, build config)
+- Obvious typo fixes in text/comments
+- Auto-generated code (migrations, type definitions)
+- Purely presentational components with zero logic or interactions (rare)
+
+**If you're unsure whether something needs a test, it needs a test.**
+
+### TDD Commands
+
+```bash
+cd web
+
+npm run test                                    # Run all tests
+npm run test -- --run path/to/file.unit.test.ts # Run specific test
+npm run test -- --watch                         # Watch mode during development
+npm run test -- --coverage                      # With coverage report
+```
+
+## Testing Strategy
+
+### Test File Naming Convention
+
+Co-locate test files next to source files:
+- Unit tests: `<name>.unit.test.ts` - Pure logic with mocked dependencies
+- Component tests: `<name>.component.test.tsx` - React component rendering and interactions
+- Integration tests: `<name>.integration.test.ts` - Tests with real database/services
+
+**Examples:**
+- `src/lib/utils/format-date.ts` → `src/lib/utils/format-date.unit.test.ts`
+- `src/components/ui/button.tsx` → `src/components/ui/button.component.test.tsx`
+
+### Testing Cadence
+
+Run tests frequently:
+- After writing each test → verify fails (red)
+- After implementing each piece → verify passes (green)
+- After each refactor → verify nothing broke
+- Before committing → run all tests
+
+### Unit Tests
+
+```typescript
+import { describe, it, expect } from "vitest";
+import { formatDate } from "./format-date";
+
+describe("formatDate", () => {
+  it("formats ISO date to readable string", () => {
+    expect(formatDate("2025-01-26")).toBe("January 26, 2025");
+  });
+
+  it("returns empty string for invalid date", () => {
+    expect(formatDate("invalid")).toBe("");
+  });
+});
+```
+
+### Component Tests
+
+Test user interactions, conditional rendering, loading/error states, and accessibility.
+
+```typescript
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { ContactForm } from "./contact-form";
+
+describe("ContactForm", () => {
+  it("submits form with name and email", async () => {
+    const user = userEvent.setup();
+    const handleSubmit = vi.fn();
+    render(<ContactForm onSubmit={handleSubmit} />);
+
+    await user.type(screen.getByLabelText(/name/i), "John Doe");
+    await user.type(screen.getByLabelText(/email/i), "john@example.com");
+    await user.click(screen.getByRole("button", { name: /submit/i }));
+
+    expect(handleSubmit).toHaveBeenCalledWith({
+      name: "John Doe",
+      email: "john@example.com",
+    });
+  });
+
+  it("shows error when email is invalid", async () => {
+    const user = userEvent.setup();
+    render(<ContactForm onSubmit={vi.fn()} />);
+
+    await user.type(screen.getByLabelText(/email/i), "invalid-email");
+    await user.click(screen.getByRole("button", { name: /submit/i }));
+
+    expect(screen.getByText(/invalid email/i)).toBeInTheDocument();
+  });
+});
+```
+
+**Key patterns:**
+- Use `userEvent` over `fireEvent`
+- Query by accessible roles/labels, not test IDs
+- Test from user's perspective
+
+### Mocking Philosophy
+
+**Mock at boundaries, not everywhere.** Mock dependencies to isolate the unit. Don't mock the unit itself.
+
+| Test Type | What to Mock | What NOT to Mock |
+|-----------|--------------|------------------|
+| Unit (pure logic) | Nothing needed | - |
+| Unit (with deps) | External services, fetch calls | Internal helpers |
+| Component | API calls, external services | Child components (usually) |
+
+**Warning signs you're over-mocking:**
+- Test needs 4+ mocks → probably an integration test in disguise
+- Mocks encode detailed external API shapes → one integration test should verify those assumptions
+- Test passes but production breaks → mocks didn't reflect reality
+
+### Snapshot Testing
+
+Avoid snapshot tests for components. Test behavior instead:
+
+```typescript
+// ✅ Behavior - tests what users actually experience
+expect(screen.getByRole("button", { name: "Submit" })).toBeEnabled();
+expect(screen.getByText("Error: Invalid email")).toBeInTheDocument();
+
+// ❌ Snapshot - brittle, doesn't test behavior
+expect(component).toMatchSnapshot();
+```
+
+### E2E Tests (Future)
+
+Use sparingly - they're slow and expensive. Reserve for critical user journeys, multi-page flows, and deployment smoke tests.
+
+**Test pyramid:** Many unit tests, fewer component tests, minimal E2E tests.
+
+### Testing Libraries
+
+- **Vitest** for unit/integration tests
+- **React Testing Library** for component testing
+- **Playwright** for E2E tests (future)
