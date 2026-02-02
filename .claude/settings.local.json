@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(dir:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_press_key",
+      "Bash(npm run lint)",
+      "Bash(npm run build:*)",
+      "mcp__github__issue_write"
     ]
   }
 }

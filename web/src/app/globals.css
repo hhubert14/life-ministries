@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
 :root {
+  /* Life Ministries Color Palette */
+  --color-primary: #2d3a8c;
+  --color-primary-dark: #1a2057;
+  --color-primary-light: #4a5bc7;
+  --color-accent: #e07940;
+  --color-accent-dark: #c5612a;
+  --color-accent-light: #f59b6a;
+
+  /* Backgrounds */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
+  --surface: #f5f5f5;
+  --footer-bg: #1a1a1a;
+
+  /* Text */
+  --text-primary: #1a1a1a;
+  --text-muted: #6b7280;
+  --text-light: #ffffff;
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #1a2057 0%, #2d3a8c 50%, #4a5bc7 100%);
+  --gradient-overlay: linear-gradient(to bottom, rgba(26, 32, 87, 0.7), rgba(26, 26, 26, 0.9));
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+  --color-accent: var(--color-accent);
+  --color-accent-dark: var(--color-accent-dark);
+  --color-accent-light: var(--color-accent-light);
+  --color-footer-bg: var(--footer-bg);
+  --color-text-primary: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-text-light: var(--text-light);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom utility classes */
+.gradient-hero {
+  background: var(--gradient-hero);
+}
+
+.gradient-overlay {
+  background: var(--gradient-overlay);
+}
+
+.text-balance {
+  text-wrap: balance;
 }

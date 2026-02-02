@@ -65,3 +65,59 @@ This is a newly bootstrapped project. No custom components, utilities, or shared
 - `eslint.config.mjs` - ESLint with Next.js Core Web Vitals rules
 - `postcss.config.mjs` - PostCSS configuration for Tailwind
 - `tsconfig.json` - TypeScript compiler options and path aliases
+
+### Component Organization
+
+- **Shared components** (used across multiple pages): Place in `src/components/`
+  - `src/components/layout/` - Header, footer, navigation
+  - `src/components/ui/` - Buttons, cards, inputs, etc.
+- **Page-specific components** (used in one spot): Co-locate in `src/app/<route>/_components/`
+  - Example: `src/app/_components/hero.tsx` for home page hero section
+
+## Test-Driven Development (TDD)
+
+This project follows TDD practices. Always write tests before implementing features.
+
+### TDD Workflow
+
+1. **Red**: Write a failing test that defines the expected behavior
+2. **Green**: Write the minimum code necessary to make the test pass
+3. **Refactor**: Clean up the code while keeping tests green
+
+### Testing Commands
+
+```bash
+cd web
+
+npm run test          # Run tests once
+npm run test:watch    # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
+```
+
+### Test File Organization
+
+- **Unit tests**: Co-locate with source files using `.test.ts` or `.test.tsx` suffix
+  - Example: `src/components/ui/button.tsx` → `src/components/ui/button.test.tsx`
+- **Integration tests**: Place in `src/__tests__/` directory
+- **E2E tests**: Place in `e2e/` directory (if using Playwright/Cypress)
+
+### What to Test
+
+- **Components**: Rendering, user interactions, props handling, accessibility
+- **Utilities/Hooks**: Input/output behavior, edge cases
+- **API Routes**: Request/response handling, error cases
+- **Data fetching**: Loading states, error states, success states
+
+### Testing Libraries
+
+- **Jest** or **Vitest** for unit/integration tests
+- **React Testing Library** for component testing
+- **Playwright** or **Cypress** for E2E tests (future)
+
+### TDD Best Practices
+
+- Write the test first, then implement the feature
+- Keep tests focused and test one thing at a time
+- Use descriptive test names that explain the expected behavior
+- Avoid testing implementation details; test behavior instead
+- Maintain test coverage for critical paths
