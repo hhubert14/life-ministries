@@ -19,7 +19,7 @@ const markerIcon = new Icon({
 
 export default function MapContent() {
   return (
-    <div className="aspect-video">
+    <div className="aspect-video relative z-0">
       <MapContainer
         center={[CHURCH_LOCATION.lat, CHURCH_LOCATION.lng]}
         zoom={15}
