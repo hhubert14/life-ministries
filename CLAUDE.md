@@ -37,9 +37,23 @@ This project uses Next.js App Router (not Pages Router). All routes live under `
 
 - **Tailwind CSS v4** with PostCSS integration
 - Global styles in `src/app/globals.css` using `@theme inline` syntax
-- CSS custom properties for theme colors (`--background`, `--foreground`)
-- System preference-based dark mode via `@media (prefers-color-scheme: dark)`
 - Responsive design with Tailwind breakpoints (`sm:`, `md:`, etc.)
+
+**Always use theme colors from `globals.css` instead of hardcoded hex values:**
+
+| Instead of | Use |
+|------------|-----|
+| `bg-[#1a1a1a]` | `bg-foreground` or `bg-footer-bg` |
+| `bg-[#ffffff]` | `bg-background` |
+| `bg-[#fafafa]` | `bg-surface-alt` |
+| `bg-[#f5f5f5]` | `bg-surface` |
+| `bg-[#e5e5e5]` | `bg-border` |
+| `text-[#1a1a1a]` | `text-foreground` |
+| `text-[#6b7280]` | `text-text-muted` |
+| `text-white` | `text-text-light` |
+| `border-[#e5e5e5]` | `border-border` |
+
+This keeps colors centralized and maintainable.
 
 ### Design Guidelines
 
@@ -63,7 +77,7 @@ This project uses Next.js App Router (not Pages Router). All routes live under `
 - Minimal, editorial layouts
 
 **For placeholder content:**
-- Use gray boxes (`bg-[#e5e5e5]`) for placeholder images
+- Use gray boxes (`bg-border`) for placeholder images
 - Use generic text like "Pastor Name", "Staff Name" instead of real data
 - Keep placeholder structure simple
 
@@ -91,7 +105,7 @@ Uses Next.js Font optimization with Geist Sans and Geist Mono from Google Fonts.
 
 **Foundation:**
 - TypeScript with strict configuration
-- Tailwind CSS v4 with dark mode support
+- Tailwind CSS v4 with centralized theme colors in `globals.css`
 - ESLint 9+ with Next.js presets (flat config format)
 - Next.js Image component for optimized images
 - Shared layout components in `src/components/layout/` (Header, Footer)

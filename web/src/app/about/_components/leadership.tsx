@@ -23,17 +23,17 @@ const leaders = [
 
 export function Leadership() {
   return (
-    <section className="py-16 lg:py-24 bg-white">
+    <section className="py-16 lg:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section header */}
         <div className="flex items-center gap-4 mb-6">
-          <h2 className="text-2xl font-bold text-[#1a1a1a] sm:text-3xl">
+          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
             Leadership
           </h2>
-          <div className="h-px flex-1 bg-[#e5e5e5]" />
+          <div className="h-px flex-1 bg-border" />
         </div>
 
-        <p className="text-[#4b5563] mb-12 max-w-2xl">
+        <p className="text-text-muted mb-12 max-w-2xl">
           Meet the pastors and staff who lead and serve our church family.
         </p>
 
@@ -42,11 +42,11 @@ export function Leadership() {
           {leaders.map((leader, index) => (
             <div key={index}>
               {/* Photo placeholder */}
-              <div className="aspect-[4/5] mb-4 bg-[#e5e5e5]" />
+              <div className="aspect-4/5 mb-4 bg-border" />
 
               {/* Info */}
-              <h3 className="font-semibold text-[#1a1a1a]">{leader.name}</h3>
-              <p className="text-sm text-[#6b7280]">{leader.role}</p>
+              <h3 className="font-semibold text-foreground">{leader.name}</h3>
+              <p className="text-sm text-text-muted">{leader.role}</p>
             </div>
           ))}
         </div>

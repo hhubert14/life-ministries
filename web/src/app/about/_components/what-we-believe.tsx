@@ -33,27 +33,27 @@ const beliefs = [
 
 export function WhatWeBelieve() {
   return (
-    <section className="py-16 lg:py-24 bg-[#fafafa]">
+    <section className="py-16 lg:py-24 bg-surface-alt">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section header */}
         <div className="flex items-center gap-4 mb-6">
-          <h2 className="text-2xl font-bold text-[#1a1a1a] sm:text-3xl">
+          <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
             What We Believe
           </h2>
-          <div className="h-px flex-1 bg-[#e5e5e5]" />
+          <div className="h-px flex-1 bg-border" />
         </div>
 
         <div className="max-w-3xl">
           {/* Quote */}
-          <blockquote className="border-l-2 border-[#1a1a1a] pl-6 mb-12">
-            <p className="text-lg text-[#4b5563] italic">
+          <blockquote className="border-l-2 border-foreground pl-6 mb-12">
+            <p className="text-lg text-text-muted italic">
               &ldquo;What comes into our minds when we think about God is the most important thing about us.&rdquo;
             </p>
-            <cite className="block mt-2 text-sm not-italic text-[#9ca3af]">— A.W. Tozer</cite>
+            <cite className="block mt-2 text-sm not-italic text-text-muted/60">— A.W. Tozer</cite>
           </blockquote>
 
           {/* Intro */}
-          <p className="text-[#4b5563] leading-relaxed mb-12">
+          <p className="text-text-muted leading-relaxed mb-12">
             From its beginnings, Life Ministries has based its beliefs on &ldquo;the whole Bible rightly
             divided.&rdquo; We accept the Bible as God&apos;s Holy Word, inspired, inerrant, and infallible—our
             highest authority for doctrine, practice, and daily life.
@@ -62,9 +62,9 @@ export function WhatWeBelieve() {
           {/* Beliefs list */}
           <div className="space-y-8">
             {beliefs.map((belief) => (
-              <div key={belief.title} className="border-b border-[#e5e5e5] pb-8 last:border-0">
-                <h3 className="font-semibold text-[#1a1a1a] mb-2">{belief.title}</h3>
-                <p className="text-[#6b7280] leading-relaxed">{belief.description}</p>
+              <div key={belief.title} className="border-b border-border pb-8 last:border-0">
+                <h3 className="font-semibold text-foreground mb-2">{belief.title}</h3>
+                <p className="text-text-muted leading-relaxed">{belief.description}</p>
               </div>
             ))}
           </div>
