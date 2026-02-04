@@ -10,7 +10,7 @@ const quickLinks = [
 
 export function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen bg-#0a0a12">
+    <section id="hero" className="relative min-h-screen bg-hero-dark">
       {/* Background image placeholder - dark worship scene */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -46,7 +46,7 @@ export function Hero() {
             {/* CTA */}
             <Link
               href="/new"
-              className="inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#1a1a1a] hover:bg-white/90 transition-colors"
+              className="inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-foreground hover:bg-white/90 transition-colors"
             >
               Plan Your Visit
             </Link>

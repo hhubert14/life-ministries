@@ -7,26 +7,26 @@ export function Mission() {
         <div className="max-w-3xl">
           {/* Section header */}
           <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-2xl font-bold text-[#1a1a1a] sm:text-3xl">
+            <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
               Welcome Home
             </h2>
-            <div className="h-px flex-1 bg-[#e5e5e5]" />
+            <div className="h-px flex-1 bg-border" />
           </div>
 
-          <p className="text-lg text-[#4b5563] leading-relaxed mb-6">
+          <p className="text-lg text-text-muted leading-relaxed mb-6">
             Life Ministries is a place where people can meet Jesus, engage in
             life-giving community, and discover their purpose. We believe in creating
             a Spirit-filled atmosphere where everyone is welcome.
           </p>
 
-          <p className="text-lg text-[#4b5563] leading-relaxed mb-8">
+          <p className="text-lg text-text-muted leading-relaxed mb-8">
             Whether you&apos;re taking your first steps in faith or have walked with
             Christ for years, there&apos;s a place for you here.
           </p>
 
           <Link
             href="/about"
-            className="inline-flex items-center text-sm font-semibold text-[#1a1a1a] hover:text-[#4b5563] transition-colors group"
+            className="inline-flex items-center text-sm font-semibold text-foreground hover:text-text-muted transition-colors group"
           >
             Learn more about us
             <svg

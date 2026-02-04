@@ -78,7 +78,7 @@ export function Header() {
             <Link href="/" className="flex items-center">
               <span
                 className={`text-sm font-semibold tracking-[0.15em] uppercase transition-colors ${
-                  isPastHero && !isMenuOpen ? "text-[#1a1a1a]" : "text-white"
+                  isPastHero && !isMenuOpen ? "text-foreground" : "text-white"
                 }`}
               >
                 Life Ministries
@@ -94,7 +94,7 @@ export function Header() {
             >
               <span
                 className={`text-sm font-semibold tracking-wider uppercase transition-colors ${
-                  isMenuOpen ? "text-white" : isPastHero ? "text-[#1a1a1a]" : "text-white"
+                  isMenuOpen ? "text-white" : isPastHero ? "text-foreground" : "text-white"
                 }`}
               >
                 {isMenuOpen ? "Close" : "Menu"}
@@ -114,7 +114,7 @@ export function Header() {
 
       {/* Side Panel - full screen on mobile, side panel on desktop */}
       <div
-        className={`fixed top-0 right-0 h-full bg-[#0a0a12] z-95 transform transition-transform duration-300 ease-in-out
+        className={`fixed top-0 right-0 h-full bg-hero-dark z-95 transform transition-transform duration-300 ease-in-out
           w-full sm:w-80
           ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
