@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const quickLinks = [
@@ -11,14 +12,14 @@ const quickLinks = [
 export function Hero() {
   return (
     <section id="hero" className="relative min-h-screen bg-hero-dark">
-      {/* Background image placeholder - dark worship scene */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(10, 10, 18, 0.4), rgba(10, 10, 18, 0.7)),
-            url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1920&q=80')`,
-        }}
+      <Image
+        src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1920&q=80"
+        alt="Worship service with raised hands"
+        fill
+        className="object-cover object-center"
+        priority
       />
+      <div className="absolute inset-0 gradient-overlay" />
 
       {/* Content container */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-32 pb-20 lg:px-8">

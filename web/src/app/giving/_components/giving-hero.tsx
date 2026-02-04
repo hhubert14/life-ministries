@@ -1,14 +1,16 @@
+import Image from "next/image";
+
 export function GivingHero() {
   return (
     <section id="hero" className="relative bg-hero-dark pt-32 pb-20">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(10, 10, 18, 0.6), rgba(10, 10, 18, 0.85)),
-            url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1920&q=80')`,
-        }}
+      <Image
+        src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1920&q=80"
+        alt="Hands reaching out in generosity"
+        fill
+        className="object-cover object-center"
+        priority
       />
+      <div className="absolute inset-0 gradient-overlay" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
