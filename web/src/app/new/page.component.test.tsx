@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, it, expect } from "vitest";
 import NewPage from "./page";
 
@@ -38,5 +39,25 @@ describe("NewPage", () => {
     expect(
       screen.getByRole("link", { name: /contact us/i })
     ).toBeInTheDocument();
+  });
+
+  it("allows keyboard navigation to CTA links in correct order", async () => {
+    const user = userEvent.setup();
+    render(<NewPage />);
+
+    const getDirectionsLink = screen.getByRole("link", {
+      name: /get directions/i,
+    });
+    const contactUsLink = screen.getByRole("link", { name: /contact us/i });
+
+    // Tab until Get Directions link receives focus
+    while (document.activeElement !== getDirectionsLink) {
+      await user.tab();
+    }
+    expect(document.activeElement).toBe(getDirectionsLink);
+
+    // Tab once more to Contact Us link
+    await user.tab();
+    expect(document.activeElement).toBe(contactUsLink);
   });
 });

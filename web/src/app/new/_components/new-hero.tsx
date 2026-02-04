@@ -1,13 +1,16 @@
+import Image from "next/image";
+
 export function NewHero() {
   return (
     <section id="hero" className="relative bg-hero-dark pt-32 pb-20">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(10, 10, 18, 0.6), rgba(10, 10, 18, 0.85)),
-            url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1920&q=80')`,
-        }}
+      <Image
+        src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1920&q=80"
+        alt="Church community gathering"
+        fill
+        className="object-cover object-center"
+        priority
       />
+      <div className="absolute inset-0 gradient-overlay" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="max-w-3xl">
@@ -27,6 +30,7 @@ export function NewHero() {
         </div>
       </div>
 
+      {/* Wave transition */}
       <div className="absolute -bottom-px left-0 right-0">
         <svg
           viewBox="0 0 1440 60"

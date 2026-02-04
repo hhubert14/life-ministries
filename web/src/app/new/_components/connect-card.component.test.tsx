@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, it, expect } from "vitest";
 import { ConnectCard } from "./connect-card";
 
@@ -47,5 +48,25 @@ describe("ConnectCard", () => {
       name: /get connected/i,
     });
     expect(sectionHeading.tagName).toBe("H2");
+  });
+
+  it("allows keyboard navigation to email link", async () => {
+    const user = userEvent.setup();
+    render(<ConnectCard />);
+
+    const emailLink = screen.getByRole("link", {
+      name: /info@lifeministriesva\.com/i,
+    });
+
+    // Tab until email link receives focus
+    while (document.activeElement !== emailLink) {
+      await user.tab();
+    }
+
+    expect(document.activeElement).toBe(emailLink);
+    expect(emailLink).toHaveAttribute(
+      "href",
+      "mailto:info@lifeministriesva.com"
+    );
   });
 });
