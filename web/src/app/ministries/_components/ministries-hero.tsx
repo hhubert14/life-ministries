@@ -1,14 +1,16 @@
+import Image from "next/image";
+
 export function MinistriesHero() {
   return (
     <section id="hero" className="relative bg-hero-dark pt-32 pb-20">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(10, 10, 18, 0.6), rgba(10, 10, 18, 0.85)),
-            url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1920&q=80')`,
-        }}
+      <Image
+        src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1920&q=80"
+        alt="Community gathering in fellowship"
+        fill
+        className="object-cover object-center"
+        priority
       />
+      <div className="absolute inset-0 gradient-overlay" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
