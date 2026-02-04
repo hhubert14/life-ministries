@@ -37,9 +37,49 @@ This project uses Next.js App Router (not Pages Router). All routes live under `
 
 - **Tailwind CSS v4** with PostCSS integration
 - Global styles in `src/app/globals.css` using `@theme inline` syntax
-- CSS custom properties for theme colors (`--background`, `--foreground`)
-- System preference-based dark mode via `@media (prefers-color-scheme: dark)`
 - Responsive design with Tailwind breakpoints (`sm:`, `md:`, etc.)
+
+**Always use theme colors from `globals.css` instead of hardcoded hex values:**
+
+| Instead of | Use |
+|------------|-----|
+| `bg-[#1a1a1a]` | `bg-foreground` or `bg-footer-bg` |
+| `bg-[#ffffff]` | `bg-background` |
+| `bg-[#fafafa]` | `bg-surface-alt` |
+| `bg-[#f5f5f5]` | `bg-surface` |
+| `bg-[#e5e5e5]` | `bg-border` |
+| `text-[#1a1a1a]` | `text-foreground` |
+| `text-[#6b7280]` | `text-text-muted` |
+| `text-white` | `text-text-light` |
+| `border-[#e5e5e5]` | `border-border` |
+
+This keeps colors centralized and maintainable.
+
+### Design Guidelines
+
+**Avoid AI-generated looking patterns.** Keep the design editorial and minimal.
+
+**DO NOT use:**
+- Rounded cards with icons in circles (looks very AI-generated)
+- Card grids for simple content that could be a list
+- Pill-shaped buttons (`rounded-full`) - use square or subtle rounding
+- Decorative SVG icons next to every heading
+- Gradient backgrounds on cards
+- Drop shadows on everything
+- Excessive use of rounded corners (`rounded-2xl`, `rounded-3xl`)
+
+**DO use:**
+- Simple left-border blockquotes for quotes
+- Stacked lists with dividers for related content
+- Square or slightly rounded images
+- Plain text links instead of button-styled links where appropriate
+- Whitespace and typography for visual hierarchy
+- Minimal, editorial layouts
+
+**For placeholder content:**
+- Use gray boxes (`bg-border`) for placeholder images
+- Use generic text like "Pastor Name", "Staff Name" instead of real data
+- Keep placeholder structure simple
 
 ### TypeScript Configuration
 
@@ -53,11 +93,22 @@ Uses Next.js Font optimization with Geist Sans and Geist Mono from Google Fonts.
 
 ## Project State
 
-This is a newly bootstrapped project. No custom components, utilities, or shared libraries exist yet. The foundation includes:
+**Completed pages:**
+- Home page (`/`) - Hero, Mission, Featured Sermon, Service Times, CTA sections
+- About page (`/about`) - Hero, Mission & Vision, What We Believe, Leadership, CTA sections
+
+**Remaining pages (see GitHub issue #8):**
+- Ministries (`/ministries`)
+- Media (`/media`)
+- I'm New (`/new`)
+- Giving (`/giving`)
+
+**Foundation:**
 - TypeScript with strict configuration
-- Tailwind CSS v4 with dark mode support
+- Tailwind CSS v4 with centralized theme colors in `globals.css`
 - ESLint 9+ with Next.js presets (flat config format)
 - Next.js Image component for optimized images
+- Shared layout components in `src/components/layout/` (Header, Footer)
 
 ## Configuration Files
 
