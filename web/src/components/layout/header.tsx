@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -14,17 +15,43 @@ const navLinks = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isPastHero, setIsPastHero] = useState(false);
+  const pathname = usePathname();
 
-  // Track scroll position - invert colors after scrolling past hero
+  // Use Intersection Observer to detect when hero section is no longer visible
+  // Re-run when pathname changes to handle client-side navigation
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 600);
+    const updateNavState = (pastHero: boolean) => {
+      setIsPastHero(pastHero);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    // Reset state on navigation - assume hero is visible until observer fires
+    updateNavState(false);
+
+    const heroElement = document.getElementById("hero");
+
+    if (!heroElement) {
+      // No hero on this page, default to scrolled state
+      updateNavState(true);
+      return;
+    }
+
+    // Use multiple thresholds to get frequent updates
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Check if the bottom of the hero is above the nav area (80px from top)
+        const heroBottom = entry.boundingClientRect.bottom;
+        updateNavState(heroBottom < 80);
+      },
+      {
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+      }
+    );
+
+    observer.observe(heroElement);
+
+    return () => observer.disconnect();
+  }, [pathname]);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -42,7 +69,7 @@ export function Header() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-100 transition-colors duration-300 ${
-          isScrolled && !isMenuOpen ? "bg-white shadow-sm" : ""
+          isPastHero && !isMenuOpen ? "bg-white shadow-sm" : ""
         }`}
       >
         <nav className="mx-auto max-w-7xl px-6 py-5 lg:px-8">
@@ -51,7 +78,7 @@ export function Header() {
             <Link href="/" className="flex items-center">
               <span
                 className={`text-sm font-semibold tracking-[0.15em] uppercase transition-colors ${
-                  isScrolled && !isMenuOpen ? "text-[#1a1a1a]" : "text-white"
+                  isPastHero && !isMenuOpen ? "text-[#1a1a1a]" : "text-white"
                 }`}
               >
                 Life Ministries
@@ -67,7 +94,7 @@ export function Header() {
             >
               <span
                 className={`text-sm font-semibold tracking-wider uppercase transition-colors ${
-                  isMenuOpen ? "text-white" : isScrolled ? "text-[#1a1a1a]" : "text-white"
+                  isMenuOpen ? "text-white" : isPastHero ? "text-[#1a1a1a]" : "text-white"
                 }`}
               >
                 {isMenuOpen ? "Close" : "Menu"}

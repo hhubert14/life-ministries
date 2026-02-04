@@ -10,7 +10,7 @@ const quickLinks = [
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen bg-[#0a0a12]">
+    <section id="hero" className="relative min-h-screen bg-#0a0a12">
       {/* Background image placeholder - dark worship scene */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"

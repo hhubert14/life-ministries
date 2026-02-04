@@ -1,4 +1,4 @@
-export function AboutHero() {
+export function MinistriesHero() {
   return (
     <section id="hero" className="relative bg-hero-dark pt-32 pb-20">
       {/* Background image */}
@@ -6,7 +6,7 @@ export function AboutHero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(10, 10, 18, 0.6), rgba(10, 10, 18, 0.85)),
-            url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=1920&q=80')`,
+            url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1920&q=80')`,
         }}
       />
 
@@ -15,27 +15,35 @@ export function AboutHero() {
         <div className="max-w-3xl">
           {/* Label */}
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-sm text-text-light/60">Get to know us</span>
+            <span className="text-sm text-text-light/60">Our Ministries</span>
             <span className="h-px flex-1 max-w-25 bg-text-light/20" />
           </div>
 
           {/* Main headline */}
           <h1 className="text-4xl font-bold tracking-tight text-text-light sm:text-5xl lg:text-6xl mb-6">
-            About Life Ministries
+            Get Connected
           </h1>
 
           {/* Subtitle */}
           <p className="text-lg text-text-light/70 max-w-xl">
-            A community of authentic believers, reaching and raising disciples for Christ
-            in Lynchburg, Virginia.
+            Find your place to grow, serve, and connect with others in our
+            community.
           </p>
         </div>
       </div>
 
       {/* Wave transition */}
       <div className="absolute -bottom-px left-0 right-0">
-        <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none" className="w-full h-15 block">
-          <path d="M0 60V30C240 10 480 0 720 0C960 0 1200 10 1440 30V60H0Z" className="fill-background" />
+        <svg
+          viewBox="0 0 1440 60"
+          fill="none"
+          preserveAspectRatio="none"
+          className="w-full h-15 block"
+        >
+          <path
+            d="M0 60V30C240 10 480 0 720 0C960 0 1200 10 1440 30V60H0Z"
+            className="fill-background"
+          />
         </svg>
       </div>
     </section>
