@@ -1,3 +1,5 @@
+import { LocationMap } from "./location-map";
+
 const serviceTimes = [
   { day: "Sunday Morning", time: "10:30 AM" },
   { day: "Wednesday Evening", time: "6:30 PM" },
@@ -42,10 +44,7 @@ export function ServiceLocation() {
               <p>Lynchburg, VA 24501</p>
             </address>
 
-            {/* Map placeholder */}
-            <div className="aspect-video bg-border flex items-center justify-center">
-              <span className="text-text-muted">Map</span>
-            </div>
+            <LocationMap />
           </div>
         </div>
       </div>
