@@ -41,6 +41,32 @@ This project uses Next.js App Router (not Pages Router). All routes live under `
 - System preference-based dark mode via `@media (prefers-color-scheme: dark)`
 - Responsive design with Tailwind breakpoints (`sm:`, `md:`, etc.)
 
+### Design Guidelines
+
+**Avoid AI-generated looking patterns.** Keep the design editorial and minimal.
+
+**DO NOT use:**
+- Rounded cards with icons in circles (looks very AI-generated)
+- Card grids for simple content that could be a list
+- Pill-shaped buttons (`rounded-full`) - use square or subtle rounding
+- Decorative SVG icons next to every heading
+- Gradient backgrounds on cards
+- Drop shadows on everything
+- Excessive use of rounded corners (`rounded-2xl`, `rounded-3xl`)
+
+**DO use:**
+- Simple left-border blockquotes for quotes
+- Stacked lists with dividers for related content
+- Square or slightly rounded images
+- Plain text links instead of button-styled links where appropriate
+- Whitespace and typography for visual hierarchy
+- Minimal, editorial layouts
+
+**For placeholder content:**
+- Use gray boxes (`bg-[#e5e5e5]`) for placeholder images
+- Use generic text like "Pastor Name", "Staff Name" instead of real data
+- Keep placeholder structure simple
+
 ### TypeScript Configuration
 
 - Path alias: `@/*` maps to `./src/*`
@@ -53,11 +79,22 @@ Uses Next.js Font optimization with Geist Sans and Geist Mono from Google Fonts.
 
 ## Project State
 
-This is a newly bootstrapped project. No custom components, utilities, or shared libraries exist yet. The foundation includes:
+**Completed pages:**
+- Home page (`/`) - Hero, Mission, Featured Sermon, Service Times, CTA sections
+- About page (`/about`) - Hero, Mission & Vision, What We Believe, Leadership, CTA sections
+
+**Remaining pages (see GitHub issue #8):**
+- Ministries (`/ministries`)
+- Media (`/media`)
+- I'm New (`/new`)
+- Giving (`/giving`)
+
+**Foundation:**
 - TypeScript with strict configuration
 - Tailwind CSS v4 with dark mode support
 - ESLint 9+ with Next.js presets (flat config format)
 - Next.js Image component for optimized images
+- Shared layout components in `src/components/layout/` (Header, Footer)
 
 ## Configuration Files
 
