@@ -49,6 +49,7 @@ export function MediaLibrary() {
         <div className="flex flex-wrap gap-2 mb-10">
           {filterTabs.map((tab) => (
             <button
+              type="button"
               key={tab}
               className="px-4 py-2 text-sm font-medium text-text-muted border border-border hover:border-foreground hover:text-foreground transition-colors"
             >
