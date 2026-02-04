@@ -49,9 +49,9 @@ export function FeaturedMessage() {
               {featuredSermon.description}
             </p>
             <div>
-              <button className="inline-flex items-center border border-foreground px-6 py-2.5 text-sm font-semibold text-foreground hover:bg-foreground hover:text-text-light transition-colors">
-                Watch Now
-              </button>
+            <button type="button" className="inline-flex items-center border border-foreground px-6 py-2.5 text-sm font-semibold text-foreground hover:bg-foreground hover:text-text-light transition-colors">
+              Watch Now
+            </button>
             </div>
           </div>
         </div>
