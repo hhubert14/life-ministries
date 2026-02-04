@@ -16,7 +16,9 @@
       "Bash(agent-browser open:*)",
       "Bash(agent-browser screenshot:*)",
       "Bash(agent-browser snapshot:*)",
-      "Bash(agent-browser close:*)"
+      "Bash(agent-browser close:*)",
+      "Bash(gh issue view:*)",
+      "Bash(npm run test:*)"
     ]
   }
 }
