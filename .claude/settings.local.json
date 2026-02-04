@@ -20,7 +20,15 @@
       "Bash(gh issue view:*)",
       "Bash(npm run test:*)",
       "mcp__github__list_pull_requests",
-      "mcp__github__pull_request_read"
+      "mcp__github__pull_request_read",
+      "mcp__github__issue_read",
+      "Bash(npx vitest:*)",
+      "Bash(agent-browser set:*)",
+      "mcp__chrome-devtools__take_screenshot",
+      "Bash(agent-browser scroll:*)",
+      "Bash(agent-browser reload:*)",
+      "Bash(agent-browser:*)",
+      "WebFetch(domain:lifeministriesva.com)"
     ]
   }
 }
