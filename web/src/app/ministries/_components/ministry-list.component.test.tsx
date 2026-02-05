@@ -56,4 +56,43 @@ describe("MinistryList", () => {
     });
     expect(youthMinistry.tagName).toBe("H3");
   });
+
+  it("renders all ministry cards as links", () => {
+    render(<MinistryList />);
+
+    const links = screen.getAllByRole("link");
+    expect(links).toHaveLength(6);
+  });
+
+  it("links to correct ministry detail pages", () => {
+    render(<MinistryList />);
+
+    const links = screen.getAllByRole("link");
+
+    // Check that links have correct hrefs by finding the link containing each ministry name
+    expect(links.find((l) => l.textContent?.includes("Youth Ministry"))).toHaveAttribute(
+      "href",
+      "/ministries/youth"
+    );
+    expect(links.find((l) => l.textContent?.includes("Children's Ministry"))).toHaveAttribute(
+      "href",
+      "/ministries/children"
+    );
+    expect(links.find((l) => l.textContent?.includes("Women's Ministry"))).toHaveAttribute(
+      "href",
+      "/ministries/women"
+    );
+    expect(links.find((l) => l.textContent?.match(/^Men's Ministry/))).toHaveAttribute(
+      "href",
+      "/ministries/men"
+    );
+    expect(links.find((l) => l.textContent?.includes("Worship Ministry"))).toHaveAttribute(
+      "href",
+      "/ministries/worship"
+    );
+    expect(links.find((l) => l.textContent?.includes("Outreach Ministry"))).toHaveAttribute(
+      "href",
+      "/ministries/outreach"
+    );
+  });
 });
