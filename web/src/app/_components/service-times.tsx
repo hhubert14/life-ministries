@@ -17,7 +17,7 @@ export function ServiceTimes() {
             {/* Image */}
             <div className="relative aspect-4/3 rounded-xl overflow-hidden mb-4 bg-foreground">
               <Image
-                src="https://images.unsplash.com/photo-1438032005730-c779502df39b?w=600&q=80"
+                src="/visit-us.png"
                 alt="Church building"
                 fill
                 className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
