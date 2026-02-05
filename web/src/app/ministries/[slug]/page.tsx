@@ -4,8 +4,6 @@ import { MenHero } from "./_components/men-hero";
 import { MenVerse } from "./_components/men-verse";
 import { MenContact } from "./_components/men-contact";
 
-const validSlugs = ["youth", "children", "women", "men", "worship", "outreach"];
-
 const ministryNames: Record<string, string> = {
   youth: "Youth Ministry",
   children: "Children's Ministry",
@@ -15,12 +13,23 @@ const ministryNames: Record<string, string> = {
   outreach: "Outreach Ministry",
 };
 
+const ministryPages: Record<
+  string,
+  { Hero: React.ComponentType; Verse: React.ComponentType; Contact: React.ComponentType }
+> = {
+  men: { Hero: MenHero, Verse: MenVerse, Contact: MenContact },
+  // Future ministries can be added here:
+  // women: { Hero: WomenHero, Verse: WomenVerse, Contact: WomenContact },
+};
+
 type Params = Promise<{ slug: string }>;
 
+// Next.js special export: pre-renders all ministry pages at build time
 export async function generateStaticParams() {
-  return validSlugs.map((slug) => ({ slug }));
+  return Object.keys(ministryNames).map((slug) => ({ slug }));
 }
 
+// Next.js special export: sets page metadata (title, description, etc.)
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
   const name = ministryNames[slug];
@@ -30,24 +39,25 @@ export async function generateMetadata({ params }: { params: Params }) {
 
 export default async function MinistryPage({ params }: { params: Params }) {
   const { slug } = await params;
+  const name = ministryNames[slug];
 
-  if (!validSlugs.includes(slug)) {
+  if (!name) {
     notFound();
   }
 
-  // Men's Ministry has a full page
-  if (slug === "men") {
+  // Render full ministry page if components exist
+  const PageComponents = ministryPages[slug];
+  if (PageComponents) {
     return (
       <main>
-        <MenHero />
-        <MenVerse />
-        <MenContact />
+        <PageComponents.Hero />
+        <PageComponents.Verse />
+        <PageComponents.Contact />
       </main>
     );
   }
 
   // Other ministries show Coming Soon
-  const name = ministryNames[slug];
 
   return (
     <main className="min-h-[60vh] flex items-center justify-center bg-background">
