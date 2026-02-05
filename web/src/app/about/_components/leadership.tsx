@@ -1,23 +1,36 @@
+import Image from "next/image";
+
 const leaders = [
   {
-    name: "Pastor Name",
+    name: "Jonathan Gillette",
     role: "Lead Pastor",
+    image: "/lead-pastor.jpeg",
+    email: "Jonathan.Gillette@lifeministriesva.com",
+    phone: "(434) 237-4474",
   },
   {
-    name: "Staff Name",
+    name: "Gary Vernon",
     role: "Associate Pastor",
+    image: "/associate-pastor.jpeg",
+    email: "Gary.Vernon@lifeministriesva.com",
   },
   {
-    name: "Staff Name",
+    name: "Kazdyn Waldron",
     role: "Worship Director",
+    image: "/placeholder-person.png",
+    email: "Kazdyn.Waldron@lifeministriesva.com",
   },
   {
-    name: "Staff Name",
+    name: "Justin Waldron",
     role: "Youth Director",
+    image: "/placeholder-person.png",
+    email: "Justin.Waldron@lifeministriesva.com",
   },
   {
-    name: "Staff Name",
+    name: "Debbie Stowers",
     role: "Children's Director",
+    image: "/childrens-director.jpeg",
+    email: "Debbie.Stower@lifeministriesva.com",
   },
 ];
 
@@ -39,14 +52,30 @@ export function Leadership() {
 
         {/* Leaders grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-          {leaders.map((leader, index) => (
-            <div key={index}>
-              {/* Photo placeholder */}
-              <div className="aspect-4/5 mb-4 bg-border" />
+          {leaders.map((leader) => (
+            <div key={leader.name}>
+              {/* Photo */}
+              <div className="relative aspect-4/5 mb-4 bg-border overflow-hidden">
+                <Image
+                  src={leader.image}
+                  alt={leader.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
               {/* Info */}
               <h3 className="font-semibold text-foreground">{leader.name}</h3>
               <p className="text-sm text-text-muted">{leader.role}</p>
+              <a
+                href={`mailto:${leader.email}`}
+                className="text-sm text-text-muted underline underline-offset-2 hover:text-foreground transition-colors"
+              >
+                {leader.email}
+              </a>
+              {leader.phone && (
+                <p className="text-sm text-text-muted">{leader.phone}</p>
+              )}
             </div>
           ))}
         </div>
