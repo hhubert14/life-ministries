@@ -17,7 +17,7 @@ export function MenHero() {
         </h1>
       </div>
       <div className="absolute -bottom-px left-0 right-0">
-        <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none" className="w-full h-60px block">
+        <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none" className="w-full h-15 block">
           <path d="M0 60V30C240 10 480 0 720 0C960 0 1200 10 1440 30V60H0Z" fill="white" />
         </svg>
       </div>
