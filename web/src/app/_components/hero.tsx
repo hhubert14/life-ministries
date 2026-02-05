@@ -13,8 +13,8 @@ export function Hero() {
   return (
     <section id="hero" className="relative min-h-screen bg-hero-dark">
       <Image
-        src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1920&q=80"
-        alt="Worship service with raised hands"
+        src="/home.jpeg"
+        alt="Life Ministries worship service"
         fill
         className="object-cover object-center"
         priority

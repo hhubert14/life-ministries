@@ -1,31 +1,46 @@
-const ministries = [
+import Image from "next/image";
+import Link from "next/link";
+
+const ministries: {
+  name: string;
+  slug: string;
+  description: string;
+  image?: string;
+}[] = [
   {
     name: "Youth Ministry",
+    slug: "youth",
     description:
       "For students in grades 6-12. A place to build friendships, grow in faith, and have fun together.",
   },
   {
     name: "Children's Ministry",
+    slug: "children",
     description:
       "Helping kids discover faith through engaging Bible lessons, worship, and activities in a safe environment.",
   },
   {
     name: "Women's Ministry",
+    slug: "women",
     description:
       "Opportunities for women to connect, study Scripture together, and support one another through life's seasons.",
   },
   {
     name: "Men's Ministry",
+    slug: "men",
     description:
       "Equipping men to follow Christ and lead well at home, work, and in the community.",
+    image: "/mens-ministry.jpeg",
   },
   {
     name: "Worship Ministry",
+    slug: "worship",
     description:
       "Using our gifts of worship and praise to glorify God and lead the congregation in heartfelt worship.",
   },
   {
     name: "Outreach Ministry",
+    slug: "outreach",
     description:
       "Serve our community through local missions, service projects, and meeting practical needs.",
   },
@@ -52,16 +67,30 @@ export function MinistryList() {
         {/* Ministries grid */}
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {ministries.map((ministry) => (
-            <div key={ministry.name} className="border-l-2 border-border pl-6">
-              {/* Placeholder image */}
-              <div className="bg-border h-40 mb-4" />
+            <Link
+              key={ministry.slug}
+              href={`/ministries/${ministry.slug}`}
+              className="block border-l-2 border-border pl-6 transition-colors hover:border-foreground"
+            >
+              {ministry.image ? (
+                <div className="relative h-40 mb-4">
+                  <Image
+                    src={ministry.image}
+                    alt={ministry.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ) : (
+                <div className="bg-border h-40 mb-4" />
+              )}
               <h3 className="font-semibold text-foreground mb-2">
                 {ministry.name}
               </h3>
               <p className="text-text-muted text-sm leading-relaxed">
                 {ministry.description}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
